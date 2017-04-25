@@ -23,4 +23,6 @@ app.set("view engine", "handlesbars");
 //Import routes and give the server access to them.
 var routes = require("./controllers/burger_controller.js");
 
-app.listen(3000);
+app.use("/", routes);
+
+app.listen(port);
