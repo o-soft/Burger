@@ -17,7 +17,7 @@ app.use(methodOverride("_method"));
 //Set handlers
 var exphbs = require("express-handlebars");
 
-app.engine("handlesbars", exhbs({ defaultLayout: "main.handlesbars"}));
+app.engine("handlesbars", exphbs({ defaultLayout: "main.handlesbars"}));
 app.set("view engine", "handlesbars");
 
 //Import routes and give the server access to them.
