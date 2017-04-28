@@ -17,12 +17,8 @@ router.get("/", function(req, res) {
 
 router.post("/", function(req, res) {
 	// body-parser to get form data
-	burger.create([
-		"name", "devoured"
-		], [
-			req.body.name, req.body.devoured
-		], function() {
-			res.redirect("/");
+	burger.create(req.body.name, function() {
+		res.redirect("/");
 	});
 });
 
@@ -36,6 +32,16 @@ router.post("/:id", function(req, res) {
 	}, condition, function() {
 		res.redirect("/");
 	});
+
+// router.put("/:id", function(req, res) {
+// 	var burgerID = "id = " + req.params.id;
+
+// 	console.log("Condition burgerID: ", burgerID);
+
+// 	burger.update(burgerID, function(){
+// 		res.redirect("/");
+// 	});
+
 });
 
 // Export routes for server.js to import
