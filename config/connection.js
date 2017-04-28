@@ -1,8 +1,8 @@
 //Set up MYSQL connection
 var mysql = require("mysql");
-
+console.log("i got here");
 var connection = mysql.createConnection({
-port: 3000,
+port: 3306,
 host: "localhost",
 user: "root",
 password: "",
@@ -19,4 +19,5 @@ connection.connect(function(err) {
 })
 
 //export connection for our ORM to use
+console.log("hey hey");
 module.exports = connection;

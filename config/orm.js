@@ -33,7 +33,7 @@ var orm = {
 			if (err) {
 				throw err;
 			}
-			cd(result);
+			cb(result);
 		});
 	},
 

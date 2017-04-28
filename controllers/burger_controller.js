@@ -16,6 +16,7 @@ router.get("/", function(req, res) {
 });
 
 router.post("/", function(req, res) {
+	// body-parser to get form data
 	burger.create([
 		"name", "devoured"
 		], [
@@ -25,7 +26,7 @@ router.post("/", function(req, res) {
 	});
 });
 
-router.put(":id", function(req, res) {
+router.post("/:id", function(req, res) {
 	var condition = "id = " + req.params.id;
 
 	console.log("condition", condition);

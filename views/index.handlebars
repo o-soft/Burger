@@ -1,6 +1,69 @@
-// * Setup the `index.handlebars` to have the template that Handlebars can render onto.
+<!-- <h1>burger!</h1>
 
-//* Create a button in `index.handlebars` that will submit the user input into the database.
+<h2>burger that are not devoured!</h2>
+
+<ul>
+  {{#each burger}}
+    {{#unless this.devoured}}
+      <li>
+        {{this.name}}
+
+        <form action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="true">
+          <button type="submit">SLEEP TIME!</button>
+        </form>
+      </li>
+    {{/unless}}
+  {{/each}}
+</ul>
+
+<h2>burger that are devoured!</h2>
+
+<ul>
+  {{#each burger}}
+    {{#if this.devoured}}
+      <li>
+        {{this.name}}
+
+        <form action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="devoured" value="false">
+          <button type="submit">WAKE UP!</button>
+        </form>
+      </li>
+    {{/if}}
+  {{/each}}
+</ul>
+
+<h2>Add a burger</h2>
+<form class="create-update-form" action="/" method="POST">
+
+  <div class="form-group">
+    <label for="ca">burger Name:</label>
+    <input type="text" id="ca" name="name">
+  </div>
+
+  <div class="form-group">
+    <label for="slee">devoured?</label><br>
+    <input type="radio" name="devoured" value="1" checked> devoured!<br>
+    <input type="radio" name="sleepy" value="0"> Awake
+  </div>
+
+  <button type="submit">Add burger</button>
+</form>
+
+
+
+
+
+ -->
+
+
+
+
+
+
+
+
 
 <div class="container">
 	<div class="row">
@@ -9,53 +72,53 @@
 			<div class="col-md-6">
 				<h2 class="title-font">Ready to Grub on Burgers!</h2>
 				<div id="lets-eat">
-
+					<ul>
 					{{#each burger}}
 						{{#unless devoured}}
-							<form action="/{{this.id}}_method=PUT method="POST">
-								<div class="input-group col-md-12 col-xs-12">
+									
 									<li class="form-control">
 										{{this.name}}
-										<div class="col-md-7 col-xs-7">{{id}}. {{burger_name}}</div>
-										<div class="col-md-5 col-xs-5">
-											<input name="devoured" type="hidden" class="form-control" placeholder="Customer Name" value="true">
-										</div>
-									</li>
-									<span class="input-group-btn devour-button">
-									</span>
-										<button class="btn btn-success devour-button" type="submit">Devour Da Burger!</button>
-									</span>
-								</div>
-							</form>
+										<form action="/{{this.id}}" method="POST">
+											
+											<div class="col-md-7 col-xs-7">{{id}}. {{burger_name}}</div>
+											<div class="col-md-5 col-xs-5">
+												<input name="devoured" type="hidden" class="form-control" placeholder="Customer Name" value="true">
+												<button class="btn btn-success devour-button" type="submit">Devour Da Burger!</button>
+											</div>
+											
+										</form>
+									</li>							
+							
 						{{/unless}}
 					{{/each}}	
-
+					</ul>
 				</div>
 			</div>
 
 			<div class="col-md-6">
 				<h2 class="title-font">Already Devoured!</h2>
 				<div id="eaten">
-
+					<ul>
 					{{#each burger}}
 						{{#if this.devoured}}
-							<form action="/{{this.id}}_method=PUT method="POST">
+							
 								<div class="input-group col-md-12 col-xs-12">
 									<li class="form-control">
 									{{this.name}}
-										<div class="col-md-7 col-xs-7">{{id}}. {{burger_name}}</div>
-										<div class="col-md-5 col-xs-5">
-											<input name="gone" type="hidden" class="form-control" value="false">
-										</div>
+										<form action="/{{this.id}}_method=PUT" method="POST">
+											<div class="col-md-7 col-xs-7">{{id}}. {{burger_name}}</div>
+											<div class="col-md-5 col-xs-5">
+												<input name="gone" type="hidden" class="form-control" value="false">
+												<button class="btn btn-info eaten-button" type="submit">Nom-Nom-Nom</button>
+											</div>
+											
+										</form>
 									</li>
-									<span class="input-group-btn eaten-button">
-										<button class="btn btn-info eaten-button" type="submit">Nom-Nom-Nom</button>
-									</span>
 								</div>
-							</form>
+							
 						{{/if}}
 					{{/each}}	
-
+					</ul>
 				</div>
 			</div>
 
@@ -65,22 +128,17 @@
 
 					<form class="create-update-form" action="/" method="POST">
 						<div class="form-group col-md-12 col-xs-12">
-								<label for="bu" class="col-md-7 col-xs-7">Burger Name:</label></br>
-								<div class="col-md-5 col-xs-5">
-									<input name="name" type="text" id="bu" class="form-control">
-								</div>
+								<label for="bu" class="col-md-7 col-xs-7">Burger Name:</label>
+								<input name="name" type="text" id="bu" class="form-control">
+							
 						</div>
 
 						<div class="form-group col-md-12 col-xs-12">
 								<label for="bu" class="col-md-7 col-xs-7">Burger Name:</label></br>
-								<div class="col-md-5 col-xs-5">
-									<input name="add" type="radio" class="form-control" value="1" checked> Ready <br>
-									<input name="add" type="radio" class="form-control" value="0"> Devoured
-								</div>
+								<input name="add" type="radio" class="form-control" value="1" checked> Ready <br>
+								<input name="add" type="radio" class="form-control" value="0"> Devoured
 						</div>
-							<span class="input-group-btn">
 								<button class="btn btn-info" type="submit">Add Burger</button>
-							</span>
 					</form>
 
 				</div>
