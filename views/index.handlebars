@@ -1,150 +1,17 @@
-<!-- <h1>burger!</h1>
-
-<h2>burger that are not devoured!</h2>
-
-<ul>
-  {{#each burger}}
-    {{#unless this.devoured}}
-      <li>
-        {{this.name}}
-
-        <form action="/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="devoured" value="true">
-          <button type="submit">SLEEP TIME!</button>
-        </form>
-      </li>
-    {{/unless}}
-  {{/each}}
-</ul>
-
-<h2>burger that are devoured!</h2>
-
-<ul>
-  {{#each burger}}
-    {{#if this.devoured}}
-      <li>
-        {{this.name}}
-
-        <form action="/{{this.id}}?_method=PUT" method="POST">
-          <input type="hidden" name="devoured" value="false">
-          <button type="submit">WAKE UP!</button>
-        </form>
-      </li>
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a burger</h2>
-<form class="create-update-form" action="/" method="POST">
-
-  <div class="form-group">
-    <label for="ca">burger Name:</label>
-    <input type="text" id="ca" name="name">
-  </div>
-
-  <div class="form-group">
-    <label for="slee">devoured?</label><br>
-    <input type="radio" name="devoured" value="1" checked> devoured!<br>
-    <input type="radio" name="sleepy" value="0"> Awake
-  </div>
-
-  <button type="submit">Add burger</button>
-</form>
-
-
-
-
-
- -->
-
-
-
-
-
-
-
-
-
-<div class="container">
-	<div class="row">
-		<center>
-
-			<div class="col-md-6">
-				<h2 class="title-font">Ready to Grub on Burgers!</h2>
-				<div id="lets-eat">
-					<ul>
-					{{#each burger}}
-						{{#unless devoured}}
-									
-									<li class="form-control">
-										{{this.name}}
-										<form action="/{{this.id}}" method="POST">
-											
-											<div class="col-md-7 col-xs-7">{{id}}. {{burger_name}}</div>
-											<div class="col-md-5 col-xs-5">
-												<input name="devoured" type="hidden" class="form-control" placeholder="Customer Name" value="true">
-												<button class="btn btn-success devour-button" type="submit">Devour Da Burger!</button>
-											</div>
-											
-										</form>
-									</li>							
-							
-						{{/unless}}
-					{{/each}}	
-					</ul>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<h2 class="title-font">Already Devoured!</h2>
-				<div id="eaten">
-					<ul>
-					{{#each burger}}
-						{{#if this.devoured}}
-							
-								<div class="input-group col-md-12 col-xs-12">
-									<li class="form-control">
-									{{this.name}}
-										<form action="/{{this.id}}_method=PUT" method="POST">
-											<div class="col-md-7 col-xs-7">{{id}}. {{burger_name}}</div>
-											<div class="col-md-5 col-xs-5">
-												<input name="gone" type="hidden" class="form-control" value="false">
-												<button class="btn btn-info eaten-button" type="submit">Nom-Nom-Nom</button>
-											</div>
-											
-										</form>
-									</li>
-								</div>
-							
-						{{/if}}
-					{{/each}}	
-					</ul>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<h2 class="title-font">Add a Burger</h2>
-				<div id="add-burger">
-
-					<form class="create-update-form" action="/" method="POST">
-						<div class="form-group col-md-12 col-xs-12">
-								<label for="name" class="col-md-7 col-xs-7">Burger Name:</label>
-								<input name="burger_name" type="text" id="name" class="form-control">
-							
-						</div>
-
-						<div class="form-group col-md-12 col-xs-12">
-								<label for="devour" class="col-md-7 col-xs-7">Burger Name:</label></br>
-								<input id="devour" name="devoured" type="radio" class="form-control" value="1" checked> Ready <br>
-								{{!--<input name="add" type="radio" class="form-control" value="0"> Devoured--}}
-						</div>
-								<button class="btn btn-info" type="submit">Add Burger</button>
-					</form>
-
-				</div>
-			</div>
-
-		</center>
-	</div>
+<div class="col-xs-6" id="served">
+    <h2>Served</h2>
+    {{#each served}}
+    <form action="/{{this.id}}?_method=PUT" method="POST" class="servedBurger">
+      <label class="servedName">{{this.burger}}</label>
+      <button type="submit" class="btn btn-default btn-xs servedBtn">Devour</button>
+    </form>
+    {{/each}}
 </div>
-
+<div class="col-xs-6" id="devoured">
+    <h2>Devoured</h2>
+    {{#each devoured}}
+    <div class="devouredBurger">
+      <p class="devouredName">{{this.burger}}</p>
+    </div>
+    {{/each}}
+</div>
