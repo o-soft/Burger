@@ -3,9 +3,13 @@ CREATE DATABASE burger_db;
 
 USE burger_db;
 
-CREATE TABLE burger(
-	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-	burger_name VARCHAR(100) NOT NULL,
-	devoured boolean,
-	burger_date TIMESTAMP
+-- USE heroku_;
+
+CREATE TABLE `burgers`
+(
+	`id` int NOT NULL AUTO_INCREMENT,
+	`burger` varchar(144) NOT NULL,
+	`devoured` BOOLEAN DEFAULT false,
+    `date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
 );

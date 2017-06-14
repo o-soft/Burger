@@ -1,50 +1,46 @@
 var express = require("express");
-
 var router = express.Router();
 
-//Import model (burger.js) to use DB methods
-var burger = require("../models/burger.js")
-// create all routes and set up logic within those routes when required
-router.get("/", function (req, res) {
-	burger.all(function (data) {
-		var hbsObject = {
-			burger: data
-		};
-		console.log(hbsObject);
-		res.render("index", hbsObject);
-	});
+// Import the model to use its database functions.
+var burger = require("../models/burger.js");
+
+// Create all our routes and set up logic within those routes where required.
+router.get("/", function(req, res) {
+    burger.selectAll(function(data) {
+        var served = [];
+        var devoured = [];
+        for (var i=0; i<data.length; i++) {
+            if (data[i].devoured) {
+                devoured.push(data[i]);
+            } else {
+                served.push(data[i]);
+            }
+        };
+        var hbsObject = {
+            served: served,
+            devoured: devoured
+        };
+        res.render("index", hbsObject);
+    });
 });
 
-router.post("/", function (req, res) {
-	// body-parser to get form data
-	burger.create(["burger_name", "devoured"], [
-		req.body.burger_name, req.body.devoured
-	], function () {
-		res.redirect("/");
-	});
+router.post("/", function(req, res) {
+    burger.insertOne([
+        "burger", "devoured"
+    ], [
+        req.body.addBurger, 0
+    ], function() {
+        res.redirect("/");
+    })
 });
 
-router.post("/:id", function (req, res) {
-	var condition = "id = " + req.params.id;
-
-	console.log("condition", condition);
-
-	burger.update({
-		devoured: req.body.devoured
-	}, condition, function () {
-		res.redirect("/");
-	});
-
-	// router.put("/:id", function(req, res) {
-	// 	var burgerID = "id = " + req.params.id;
-
-	// 	console.log("Condition burgerID: ", burgerID);
-
-	// 	burger.update(burgerID, function(){
-	// 		res.redirect("/");
-	// 	});
-
+router.put("/:id", function(req,res) {
+    burger.updateOne({
+        devoured: 1
+    }, "id=" + req.params.id, function() {
+        res.redirect("/");
+    })
 });
 
-// Export routes for server.js to import
+// Export routes for server.js to use.
 module.exports = router;
