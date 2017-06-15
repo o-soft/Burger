@@ -1,5 +1,5 @@
 // Import MySQL connection.
-var connection = require("../config/connection.js");
+var connection = require("./connection.js");
 
 // Helper function for SQL syntax.
 function printQuestionMarks(num) {
@@ -28,7 +28,8 @@ function objToSql(ob) {
 // Object for all our SQL statement functions.
 var orm = {
     selectAll: function(tableInput, cb) {
-      var queryString = "SELECT * FROM " + tableInput + ";";
+      console.log(tableInput);
+      var queryString = "SELECT * FROM " + tableInput;
       connection.query(queryString, function(err, result) {
         if (err) {
           throw err;
