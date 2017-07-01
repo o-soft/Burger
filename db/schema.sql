@@ -1,9 +1,7 @@
 
-CREATE DATABASE burger_db;
+CREATE DATABASE `burger_db`;
 
-USE burger_db;
-
--- USE heroku_;
+USE `burger_db`;
 
 CREATE TABLE `burgers`
 (

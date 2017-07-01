@@ -1,7 +1,7 @@
 <div class="col-xs-6" id="served">
     <h2>Served</h2>
     {{#each served}}
-    <form action="/{{this.id}}?_method=PUT" method="POST" class="servedBurger">
+    <form action="/api/burger/{{this.id}}?_method=PUT" method="POST" class="servedBurger">
       <label class="servedName">{{this.burger}}</label>
       <button type="submit" class="btn btn-default btn-xs servedBtn">Devour</button>
     </form>
